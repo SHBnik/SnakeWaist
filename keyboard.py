@@ -1,6 +1,6 @@
 # 1 - Import library
 import pygame
-from pygame.locals import *
+
 import time
  
 # 2 - Initialize the game
@@ -10,8 +10,6 @@ pygame.font.init() # you have to call this at the start,
  
 width, height = 64*10, 64*8
 screen=pygame.display.set_mode((width, height))
-
- 
 
  
 # 4 - keep looping through
@@ -30,13 +28,22 @@ while 1:
             pygame.quit() 
             exit(0) 
         if event.type == pygame.KEYDOWN:
-            if event.key==K_UP:
-                pass
+            if event.key==pygame.K_UP:
+                keys[0]=True
             elif event.key==K_LEFT:
-                pass
+                keys[1]=True
             elif event.key==K_DOWN:
-                pass
+                keys[2]=True
             elif event.key==K_RIGHT:
-                pass
+                keys[3]=True
             time.sleep(0.1)
  
+        if event.type == pygame.KEYUP:
+            if event.key==pygame.K_UP:
+                keys[0]=False
+            elif event.key==pygame.K_LEFT:
+                keys[1]=False
+            elif event.key==pygame.K_DOWN:
+                keys[2]=False
+            elif event.key==pygame.K_RIGHT:
+                keys[3]=False

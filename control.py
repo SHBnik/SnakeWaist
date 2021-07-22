@@ -16,6 +16,7 @@ mot = dyna.motors()
 
 speed = 250
 caps = False
+freez_time = 3
 
 while 1:
 
@@ -27,29 +28,29 @@ while 1:
             exit(0) 
         if event.type == pygame.KEYDOWN:
             if event.key==pygame.K_UP:
-                mot.move(0,0,250,250,0)
-                if caps: time.sleep(3)
+                mot.move(4,0,speed,speed,0)
+                if caps: time.sleep(freez_time)
             elif event.key==pygame.K_DOWN:
-                mot.move(1,250,0,0,250)
-                if caps: time.sleep(3)
+                mot.move(4,speed,0,0,speed)
+                if caps: time.sleep(freez_time)
             elif event.key==pygame.K_RIGHT:
-                mot.move(2,250,0,250,0)
-                if caps: time.sleep(3)
+                mot.move(4,speed,0,speed,0)
+                if caps: time.sleep(freez_time)
             elif event.key==pygame.K_LEFT:
-                mot.move(3,0,250,0,250)
-                if caps: time.sleep(3)            
+                mot.move(4,0,speed,0,speed)
+                if caps: time.sleep(freez_time)            
             elif event.key==pygame.K_KP8:
-                mot.move(0,0,-250,-250,0)
-                if caps: time.sleep(3)
+                mot.move(4,0,-speed,-speed,0)
+                if caps: time.sleep(freez_time)
             elif event.key==pygame.K_KP2:
-                mot.move(1,-250,0,0,-250)
-                if caps: time.sleep(3)
+                mot.move(4,-speed,0,0,-speed)
+                if caps: time.sleep(freez_time)
             elif event.key==pygame.K_KP6:
-                mot.move(2,-250,0,-250,0)
-                if caps: time.sleep(3)
+                mot.move(4,-speed,0,-speed,0)
+                if caps: time.sleep(freez_time)
             elif event.key==pygame.K_KP4:
-                mot.move(3,0,-250,0,-250)
-                if caps: time.sleep(3)
+                mot.move(4,0,-speed,0,-speed)
+                if caps: time.sleep(freez_time)
             elif event.key==pygame.K_KP_PLUS:
                 mot.move(4,-speed,-speed,-speed,-speed)
             elif event.key==pygame.K_KP_MINUS:
@@ -58,6 +59,20 @@ while 1:
                 if caps == False: caps = True
                 elif caps == True: caps = False
                         
+
+            elif event.key==pygame.K_w:
+                mot.move(4,-speed,speed,speed,-speed)
+                if caps: time.sleep(freez_time)
+            elif event.key==pygame.K_s:
+                mot.move(4,speed,-speed,-speed,speed)
+                if caps: time.sleep(freez_time)
+            elif event.key==pygame.K_d:
+                mot.move(4,speed,-speed,speed,-speed)
+                if caps: time.sleep(freez_time)
+            elif event.key==pygame.K_a:
+                mot.move(4,-speed,speed,-speed,speed)
+                if caps: time.sleep(freez_time) 
+
             elif event.key==pygame.K_SPACE:
 
                 mot.move(4,0,100,100,0)
