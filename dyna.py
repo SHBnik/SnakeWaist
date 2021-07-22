@@ -135,17 +135,17 @@ class motors:
         # self.pos_e4 = self.pos_e4 + speed4 
 
         speed1 = self.map_dyna(speed1)
-        speed1 = self.prepare_packet(self.pos_e1)
+        speed1 = self.prepare_packet(speed1)
         zero = self.prepare_packet(0)
 
         speed2 = self.map_dyna(speed2)
-        speed2 = self.prepare_packet(self.pos_e2)
+        speed2 = self.prepare_packet(speed2)
 
         speed3 = self.map_dyna(speed3)
-        speed3 = self.prepare_packet(self.pos_e3)
+        speed3 = self.prepare_packet(speed3)
 
         speed4 = self.map_dyna(speed4)
-        speed4 = self.prepare_packet(self.pos_e4)
+        speed4 = self.prepare_packet(speed4)
 
         if dir == 0: 
             self.groupSyncWrite.addParam(self.DXL1_ID, zero)
