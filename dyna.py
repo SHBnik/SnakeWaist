@@ -10,6 +10,7 @@ class motors:
         self.ADDR_MX_CW_ANGLE_LIMIT     = 6
         self.ADDR_MX_CCW_ANGLE_LIMIT    = 8 
         self.ADDR_MX_GOAL_POSITION      = 30
+        self.ADDR_MX_TORQUE_LIMIT       = 34
 
         # Data Byte Length
         self.LEN_MX_MOVE_SPEED          = 2
@@ -73,6 +74,10 @@ class motors:
         self.enable_torque(self.DXL3_ID)
         self.enable_torque(self.DXL4_ID)
 
+        self.set_torque_limit(self.DXL1_ID, 400)
+        self.set_torque_limit(self.DXL2_ID, 400)
+        self.set_torque_limit(self.DXL3_ID, 400)
+        self.set_torque_limit(self.DXL4_ID, 400)
 
 
         zero = self.prepare_packet(0)
@@ -83,17 +88,15 @@ class motors:
         self.groupSyncWrite.txPacket()
         self.groupSyncWrite.clearParam()
 
-        self.pos_e1 = 511
-        self.pos_e2 = 511
-        self.pos_e3 = 511
-        self.pos_e4 = 511
 
 
 
     def set_wheel_mode(self, ID):
         self.packetHandler.write2ByteTxRx(self.portHandler, ID, self.ADDR_MX_CW_ANGLE_LIMIT, 0)
         self.packetHandler.write2ByteTxRx(self.portHandler, ID, self.ADDR_MX_CCW_ANGLE_LIMIT, 0)
-        
+
+    def set_torque_limit(self, ID, torque):
+        self.packetHandler.write2ByteTxRx(self.portHandler, ID, self.ADDR_MX_TORQUE_LIMIT, torque) 
         
     def set_joint_mode(self, ID):
         self.packetHandler.write2ByteTxRx(self.portHandler, ID, self.ADDR_MX_CW_ANGLE_LIMIT, 0)
