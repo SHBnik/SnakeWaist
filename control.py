@@ -75,23 +75,19 @@ while 1:
 
             elif event.key==pygame.K_SPACE:
 
-                mot.move(4,0,100,100,0)
-                time.sleep(4)
-                mot.move(4,0,0,0,0)
-                print("1")
-                time.sleep(5)
-                mot.move(4,0,100,0,200)
-                time.sleep(4)
-                mot.move(4,0,0,0,0)
-                print("2")
-                time.sleep(5) 
-                mot.move(4,0,-100,0,-200)
-                time.sleep(4)
-                mot.move(4,0,0,0,0)
-                print("3")
-                time.sleep(5)
-                mot.move(4,0,-100,-100,0)
-                time.sleep(4)
+                mot.move(4,-speed,speed,speed,-speed)
+                time.sleep(1)
+                mot.move(4,speed,-speed,-speed,speed)
+                time.sleep(2)
+                mot.move(4,-speed,speed,speed,-speed)
+                time.sleep(1)
+                mot.move(4,speed,-speed,speed,-speed)
+                time.sleep(1)
+                mot.move(4,-speed,speed,-speed,speed)
+                time.sleep(2)
+                mot.move(4,speed,-speed,speed,-speed)
+                time.sleep(1)
+
 
                 
  

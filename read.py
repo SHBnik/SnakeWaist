@@ -24,20 +24,23 @@ def read_position(data):
          data.pose.orientation.w]
           )
 
-    if num < 11:
-        f.write(str(x_pos)+','+str(y_pos)+','+str(z_pos)+','+str(eu_roll)+','+str(eu_pitch)+','+str(eu_yaw)+'\n')
-        num += 1
+    # if num < 11:
+    #     f.write(str(x_pos)+','+str(y_pos)+','+str(z_pos)+','+str(eu_roll)+','+str(eu_pitch)+','+str(eu_yaw)+'\n')
+    #     num += 1
 
-        if num == 11:
-            f.close()
+        # if num == 11:
+        #     f.close()
 
 def listen_to_aruco_single_node():
+    global f
+    try:
+        rospy.init_node('Farzamsdick', anonymous=False)
 
-    rospy.init_node('Farzamsdick', anonymous=False)
+        rospy.Subscriber("/aruco_single/pose", geometry_msgs.msg.PoseStamped, read_position)
 
-    rospy.Subscriber("/aruco_single/pose", geometry_msgs.msg.PoseStamped, read_position)
-
-    rospy.spin()
+        rospy.spin()
+    except Exception as e: 
+        f.close()
 
 
 
