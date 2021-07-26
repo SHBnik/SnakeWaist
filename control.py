@@ -16,7 +16,8 @@ mot = dyna.motors()
 
 speed = 250
 caps = False
-freez_time = 0.5
+freez_time = 2.8
+
 
 while 1:
 
@@ -77,19 +78,19 @@ while 1:
                 mot.home() 
 
             elif event.key==pygame.K_SPACE:
-                t=1
-                mot.move(4,-speed,speed,speed,-speed) 
-                time.sleep(t)
-                mot.move(4,speed,-speed,-speed,speed)
-                time.sleep(2*t)
-                mot.move(4,-speed,speed,speed,-speed)
-                time.sleep(t)
-                # mot.move(4,speed,-speed,speed,-speed)
+                t=2.8
+                # mot.move(4,-speed,speed,speed,-speed) 
                 # time.sleep(t)
-                # mot.move(4,-speed,speed,-speed,speed)
+                # mot.move(4,speed,-speed,-speed,speed)
                 # time.sleep(2*t)
-                # mot.move(4,speed,-speed,speed,-speed)
+                # mot.move(4,-speed,speed,speed,-speed)
                 # time.sleep(t)
+                mot.move(4,speed,-speed,speed,-speed)
+                time.sleep(t)
+                mot.move(4,-speed,speed,-speed,speed)
+                time.sleep(2*t)
+                mot.move(4,speed,-speed,speed,-speed)
+                time.sleep(t)
 
 
                 
