@@ -88,9 +88,9 @@ while 1:
                 mot.move(4,speed,-speed,speed,-speed)
                 time.sleep(t)
                 mot.move(4,-speed,speed,-speed,speed)
-                time.sleep(2*t)
-                mot.move(4,speed,-speed,speed,-speed)
                 time.sleep(t)
+                # mot.move(4,speed,-speed,speed,-speed)
+                # time.sleep(t)
 
 
                 
