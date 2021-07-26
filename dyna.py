@@ -129,6 +129,23 @@ class motors:
         self.disable_torque(self.DXL3_ID)
         self.disable_torque(self.DXL4_ID)
 
+    def home(self):
+        self.set_joint_mode(self.DXL1_ID)
+        self.set_joint_mode(self.DXL2_ID)
+        self.set_joint_mode(self.DXL3_ID)
+        self.set_joint_mode(self.DXL4_ID)
+
+        self.packetHandler.write2ByteTxRx(self.portHandler, self.DXL1_ID, self.ADDR_MX_GOAL_POSITION, 345)
+        self.packetHandler.write2ByteTxRx(self.portHandler, self.DXL2_ID, self.ADDR_MX_GOAL_POSITION, 272)
+        self.packetHandler.write2ByteTxRx(self.portHandler, self.DXL3_ID, self.ADDR_MX_GOAL_POSITION, 303)
+        self.packetHandler.write2ByteTxRx(self.portHandler, self.DXL4_ID, self.ADDR_MX_GOAL_POSITION, 372)
+
+        time.sleep(5)
+        self.set_wheel_mode(self.DXL1_ID)
+        self.set_wheel_mode(self.DXL2_ID)
+        self.set_wheel_mode(self.DXL3_ID)
+        self.set_wheel_mode(self.DXL4_ID)
+
 
     def move(self, dir, speed1, speed2, speed3, speed4):
 

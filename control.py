@@ -72,6 +72,9 @@ while 1:
             elif event.key==pygame.K_a:
                 mot.move(4,-speed,speed,-speed,speed)
                 if caps: time.sleep(freez_time) 
+                
+            elif event.key==pygame.K_h:
+                mot.home() 
 
             elif event.key==pygame.K_SPACE:
                 t=1
