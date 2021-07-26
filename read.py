@@ -23,7 +23,7 @@ def read_position(data):
          data.pose.orientation.z,
          data.pose.orientation.w]
           )
-
+    f.write(str(x_pos)+','+str(y_pos)+','+str(z_pos)+','+str(eu_roll)+','+str(eu_pitch)+','+str(eu_yaw)+'\n')
     # if num < 11:
     #     f.write(str(x_pos)+','+str(y_pos)+','+str(z_pos)+','+str(eu_roll)+','+str(eu_pitch)+','+str(eu_yaw)+'\n')
     #     num += 1
