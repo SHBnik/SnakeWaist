@@ -10,13 +10,15 @@ import os
 import tf
 import math
 
-
+x_offset = -0.00108
+y_offset = 0.01289
+z_offset = 0.02238
 
 def read_position(data):
     global num,f
-    x_pos = data.pose.position.x
-    y_pos = data.pose.position.y
-    z_pos = data.pose.position.z 
+    x_pos = data.pose.position.x + x_offset
+    y_pos = data.pose.position.y + y_offset
+    z_pos = data.pose.position.z + z_offset
     (eu_roll, eu_pitch, eu_yaw) = tf.transformations.euler_from_quaternion(
         [data.pose.orientation.x,
          data.pose.orientation.y,
