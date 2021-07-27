@@ -140,7 +140,7 @@ class motors:
         self.packetHandler.write2ByteTxRx(self.portHandler, self.DXL3_ID, self.ADDR_MX_GOAL_POSITION, 216)
         self.packetHandler.write2ByteTxRx(self.portHandler, self.DXL4_ID, self.ADDR_MX_GOAL_POSITION, 379)
 
-        time.sleep(5)
+        time.sleep(2)
         self.set_wheel_mode(self.DXL1_ID)
         self.set_wheel_mode(self.DXL2_ID)
         self.set_wheel_mode(self.DXL3_ID)

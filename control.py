@@ -16,7 +16,9 @@ mot = dyna.motors()
 
 speed = 250
 caps = False
-freez_time = 2.8
+freez_time = 1
+error_correction_time = 0.25 #1.4 mm
+
 
 
 while 1:
@@ -88,7 +90,7 @@ while 1:
                 mot.move(4,speed,-speed,speed,-speed)
                 time.sleep(t)
                 mot.move(4,-speed,speed,-speed,speed)
-                time.sleep(t)
+                time.sleep(t- error_correction_time*0.45)
                 # mot.move(4,speed,-speed,speed,-speed)
                 # time.sleep(t)
 
