@@ -22,3 +22,12 @@ def theta_t(t):
     p4 = 2.721
     theta = p1 * t ** 3 + p2 * t ** 2 + p3 * t + p4
     return theta
+
+
+def t_yaw(yaw):
+    p1 = -2.823e-06
+    p2 = 5.529e-06
+    p3 = -0.03632
+    p4 = 0.1556
+    t = p1 * yaw ** 3 + p2 * yaw ** 2 + p3 * yaw + p4
+    return t
