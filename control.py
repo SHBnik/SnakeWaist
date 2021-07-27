@@ -96,7 +96,7 @@ while 1:
                 # time.sleep(2*t)
                 # mot.move(4,-speed,speed,speed,-speed)
                 # time.sleep(t)
-                for i in range(56):
+                for i in range(57):
                     t = i * 0.05
                     mot.move(4,speed,-speed,speed,-speed)
                     time.sleep(t)
