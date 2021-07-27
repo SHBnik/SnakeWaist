@@ -4,6 +4,8 @@ import pygame
 import time
 import rospy
 from std_msgs.msg import String
+import TXY as formula
+
 
 pygame.init()
 pygame.font.init() 
@@ -89,27 +91,25 @@ while 1:
                 mot.home() 
 
             elif event.key==pygame.K_SPACE:
-                t=2.8
-                # mot.move(4,-speed,speed,speed,-speed) 
-                # time.sleep(t)
-                # mot.move(4,speed,-speed,-speed,speed)
-                # time.sleep(2*t)
-                # mot.move(4,-speed,speed,speed,-speed)
-                # time.sleep(t)
-                for i in range(57):
-                    t = i * 0.05
-                    mot.move(4,speed,-speed,speed,-speed)
-                    time.sleep(t)
-                    mot.move(4,0,0,0,0)
-                    pub.publish(str(t))
-                    time.sleep(0.2)
+                # t=2.8
+                # for i in range(57):
+                #     t = i * 0.05
+                #     mot.move(4,speed,-speed,speed,-speed)
+                #     time.sleep(t)
+                #     mot.move(4,0,0,0,0)
+                #     pub.publish(str(t))
+                #     time.sleep(0.2)
 
-                    mot.move(4,-speed,speed,-speed,speed)
-                    time.sleep(t)
-                    mot.move(4,0,0,0,0)
-                    mot.home()
-                    # time.sleep(t- error_correction_time*0.45)
+                #     mot.move(4,-speed,speed,-speed,speed)
+                #     time.sleep(t)
+                #     mot.move(4,0,0,0,0)
+                #     mot.home()
+                #     # time.sleep(t- error_correction_time*0.45)
 
+                
+                mot.move(4,speed,-speed,speed,-speed)
+                time.sleep(formula.theta_t(90 - 35))
+                mot.move(4,0,0,0,0)
 
                 
  

@@ -28,6 +28,8 @@ def read_position(data):
          data.pose.orientation.z,
          data.pose.orientation.w]
           )
+
+    print(eu_roll * 180/math.pi, eu_pitch* 180/math.pi, eu_yaw* 180/math.pi)
     # if num < 11:
     #     f.write(str(x_pos)+','+str(y_pos)+','+str(z_pos)+','+str(eu_roll)+','+str(eu_pitch)+','+str(eu_yaw)+'\n')
     #     num += 1
