@@ -1,8 +1,9 @@
+#!/usr/bin/env python
 import dyna
 import pygame
 import time
- 
-
+import rospy
+from std_msgs.msg import String
 
 pygame.init()
 pygame.font.init() 
@@ -20,6 +21,14 @@ freez_time = 1
 error_correction_time = 0.25 #1.4 mm
 
 
+
+
+
+
+
+rospy.init_node('farzamsdick_controller', anonymous=False)
+
+pub = rospy.Publisher('chatter', String, queue_size=10)
 
 while 1:
 
@@ -87,12 +96,19 @@ while 1:
                 # time.sleep(2*t)
                 # mot.move(4,-speed,speed,speed,-speed)
                 # time.sleep(t)
-                mot.move(4,speed,-speed,speed,-speed)
-                time.sleep(t)
-                mot.move(4,-speed,speed,-speed,speed)
-                time.sleep(t- error_correction_time*0.45)
-                # mot.move(4,speed,-speed,speed,-speed)
-                # time.sleep(t)
+                for i in range(56):
+                    t = i * 0.05
+                    mot.move(4,speed,-speed,speed,-speed)
+                    time.sleep(t)
+                    mot.move(4,0,0,0,0)
+                    pub.publish(str(t))
+                    time.sleep(0.2)
+
+                    mot.move(4,-speed,speed,-speed,speed)
+                    time.sleep(t)
+                    mot.move(4,0,0,0,0)
+                    mot.home()
+                    # time.sleep(t- error_correction_time*0.45)
 
 
                 
