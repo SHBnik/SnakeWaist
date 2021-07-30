@@ -108,7 +108,7 @@ while 1:
 
                 
                 mot.move(4,speed,-speed,speed,-speed)
-                time.sleep(formula.t_yaw(-55))
+                time.sleep(formula.t_yaw(-10))
                 mot.move(4,0,0,0,0)
 
                 
