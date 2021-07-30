@@ -98,7 +98,7 @@ while 1:
                 #     time.sleep(t)
                 #     mot.move(4,0,0,0,0)
                 #     pub.publish(str(t))
-                #     time.sleep(0.2)
+                #     time.sleep(0.5)
 
                 #     mot.move(4,-speed,speed,-speed,speed)
                 #     time.sleep(t)
@@ -108,7 +108,7 @@ while 1:
 
                 
                 mot.move(4,speed,-speed,speed,-speed)
-                time.sleep(formula.theta_t(90 - 35))
+                time.sleep(formula.t_yaw(-55))
                 mot.move(4,0,0,0,0)
 
                 
