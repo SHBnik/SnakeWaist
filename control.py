@@ -12,7 +12,7 @@ import os
 import tf
 import math
 import TXY as formula
-import pid
+from pid import pid
 
 pygame.init()
 pygame.font.init() 
@@ -23,7 +23,7 @@ screen.fill((255,255,255))
 
 
 mot = dyna.motors()
-yaw_pid = pid(5,0,0)
+yaw_pid = pid(38.65,0.2,21.5)
 
 
 
@@ -38,10 +38,7 @@ yaw = 0
 
 
 
-rospy.init_node('farzamsdick_controller', anonymous=False)
 
-rospy.Subscriber("/aruco_single/pose", geometry_msgs.msg.PoseStamped, read_position)
-pub = rospy.Publisher('chatter', String, queue_size=10)
 
 
 
@@ -50,17 +47,29 @@ pub = rospy.Publisher('chatter', String, queue_size=10)
 
 def read_position(data):
     global yaw
-
     (roll, eu_pitch, yaw) = tf.transformations.euler_from_quaternion(
         [data.pose.orientation.x,
          data.pose.orientation.y,
          data.pose.orientation.z,
          data.pose.orientation.w]
           )
+    print(radtodeg(yaw))
 
 
 def radtodeg(data):
     return data*57.2958
+
+
+
+
+
+
+
+
+rospy.init_node('farzamsdick_controller', anonymous=False)
+
+rospy.Subscriber("/aruco_single/pose", geometry_msgs.msg.PoseStamped, read_position)
+pub = rospy.Publisher('chatter', String, queue_size=10)
 
 
 while 1:
@@ -124,6 +133,7 @@ while 1:
             elif event.key==pygame.K_SPACE:
                 if is_pid == False: is_pid = True
                 elif is_pid == True: is_pid = False
+                yaw_pid.resetI()
 
                 
  
@@ -131,5 +141,5 @@ while 1:
             mot.move(5,0,0,0,0)
 
     if is_pid:
-        pid_speed = yaw_pid.update_pid(-20,radtodeg(yaw))
-        mot.move(4,pid_speed,-pid_speed,pid_speed,-pid_speed)
+        pid_speed = yaw_pid.upmot.move(4,pid_speed,-pid_speed,pid_speed,-pid_speed)date_pid(-45,radtodeg(yaw))
+        
