@@ -4,8 +4,15 @@ import pygame
 import time
 import rospy
 from std_msgs.msg import String
-import TXY as formula
+import geometry_msgs.msg
+import time
+import sys
+import os
 
+import tf
+import math
+import TXY as formula
+import pid
 
 pygame.init()
 pygame.font.init() 
@@ -16,21 +23,45 @@ screen.fill((255,255,255))
 
 
 mot = dyna.motors()
+yaw_pid = pid(5,0,0)
+
+
 
 speed = 250
 caps = False
 freez_time = 1
 error_correction_time = 0.25 #1.4 mm
 
-
-
+is_pid = False
+yaw = 0
 
 
 
 
 rospy.init_node('farzamsdick_controller', anonymous=False)
 
+rospy.Subscriber("/aruco_single/pose", geometry_msgs.msg.PoseStamped, read_position)
 pub = rospy.Publisher('chatter', String, queue_size=10)
+
+
+
+
+
+
+def read_position(data):
+    global yaw
+
+    (roll, eu_pitch, yaw) = tf.transformations.euler_from_quaternion(
+        [data.pose.orientation.x,
+         data.pose.orientation.y,
+         data.pose.orientation.z,
+         data.pose.orientation.w]
+          )
+
+
+def radtodeg(data):
+    return data*57.2958
+
 
 while 1:
 
@@ -91,30 +122,14 @@ while 1:
                 mot.home() 
 
             elif event.key==pygame.K_SPACE:
-                # t=2.8
-                # for i in range(57):
-                #     t = i * 0.05
-                #     mot.move(4,speed,-speed,speed,-speed)
-                #     time.sleep(t)
-                #     mot.move(4,0,0,0,0)
-                #     pub.publish(str(t))
-                #     time.sleep(0.5)
-
-                #     mot.move(4,-speed,speed,-speed,speed)
-                #     time.sleep(t)
-                #     mot.move(4,0,0,0,0)
-                #     mot.home()
-                #     # time.sleep(t- error_correction_time*0.45)
-
-                
-                mot.move(4,speed,-speed,speed,-speed)
-                time.sleep(formula.t_yaw(-55))
-                mot.move(4,0,0,0,0)
+                if is_pid == False: is_pid = True
+                elif is_pid == True: is_pid = False
 
                 
  
         if event.type == pygame.KEYUP:
             mot.move(5,speed,speed,speed,speed)
 
-
-
+    if is_pid:
+        pid_speed = yaw_pid.update_pid(20,radtodeg(yaw))
+        mot.move(4,pid_speed,-pid_speed,pid_speed,-pid_speed)

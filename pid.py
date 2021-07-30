@@ -26,15 +26,15 @@ class pid:
         self.D = ((self.Error - self.last_Error)/(elapsed_time) )* self.Kd
         self.I += (self.Error ) * self.Ki
 
-        if self.I > 10000: self.I = 10000
-        if self.I < -10000: self.I = -10000
+        if self.I > 10: self.I = 10
+        if self.I < -10: self.I = -10
 
         self.last_time = self.time
         self.last_Error = self.Error
         pid = (self.P + self.I + self.D )
 
-        if pid > 255: pid = 255
-        if pid < -255: pid = -255
+        if pid > 250: pid = 250
+        if pid < -250: pid = -250
         return pid
 
     def get_term_i(self):
