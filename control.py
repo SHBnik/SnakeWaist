@@ -36,6 +36,7 @@ error_correction_time = 0.25 #1.4 mm
 is_pid = False
 yaw = 0
 
+yaw_setpoint = -20
 
 
 
@@ -136,12 +137,19 @@ while 1:
                 elif is_pid == True: is_pid = False
                 yaw_pid.resetI()
 
+
+                
+            elif event.key==pygame.K_RALT or event.key==pygame.K_LALT:
+                mot.move(4,speed,-speed,speed,-speed)
+                time.sleep(formula.t_yaw(yaw_setpoint))
+
+
                 
  
         if event.type == pygame.KEYUP:
             mot.move(5,0,0,0,0)
 
     if is_pid:
-        pid_speed = yaw_pid.update_pid(-20,radtodeg(yaw))
+        pid_speed = yaw_pid.update_pid(yaw_setpoint,radtodeg(yaw))
         mot.move(4,pid_speed,-pid_speed,pid_speed,-pid_speed)
         
