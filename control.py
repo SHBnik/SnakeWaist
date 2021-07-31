@@ -23,7 +23,8 @@ screen.fill((255,255,255))
 
 
 mot = dyna.motors()
-yaw_pid = pid(38.65,0.2,21.5)
+yaw_pid = pid(86.05,0.15,28)
+# yaw_pid = pid(50,0.05,20)
 
 
 
@@ -141,5 +142,6 @@ while 1:
             mot.move(5,0,0,0,0)
 
     if is_pid:
-        pid_speed = yaw_pid.upmot.move(4,pid_speed,-pid_speed,pid_speed,-pid_speed)date_pid(-45,radtodeg(yaw))
+        pid_speed = yaw_pid.update_pid(-20,radtodeg(yaw))
+        mot.move(4,pid_speed,-pid_speed,pid_speed,-pid_speed)
         
