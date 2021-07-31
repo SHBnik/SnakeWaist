@@ -142,7 +142,7 @@ while 1:
             elif event.key==pygame.K_RALT or event.key==pygame.K_LALT:
                 mot.move(4,speed,-speed,speed,-speed)
                 time.sleep(formula.t_yaw(yaw_setpoint))
-
+                mot.move(4,0,0,0,0)
 
                 
  
